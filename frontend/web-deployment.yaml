@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: nugulsuhan/cloudnative:frontend6
+          image: nugulsuhan/p_frontend:906b4b37e14fd608f06a7c55322e9853a74007f9
           ports:
             - containerPort: 80
