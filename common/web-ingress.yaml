@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: studylinker-main
+  namespace: webservice
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: studylinker
+    alb.ingress.kubernetes.io/group.order: "4"
+
+    # === ALB 전체에 적용되는 옵션들 ===
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: alb
+  rules:
+    - host: gachon.studylink.click
+      http:
+        paths:
+          # 👇 [추가됨] Auth 서비스 (10000번 포트)
+          # 구체적인 경로를 먼저 적어주는 것이 관례상 좋습니다.
+          - path: /api/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-service    # service.yaml의 metadata.name과 일치해야 함
+                port:
+                  number: 10000       # 요청하신 10000번 포트
+
+          # 👇 [기존] 프론트엔드 웹 서비스 (80번 포트)
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: studylinker-web
+                port:
+                  number: 80
