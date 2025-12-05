@@ -6,18 +6,20 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/studylinker/manifest.git  # 본인 레포 주소
+    repoURL: https://github.com/studylinker/manifest.git
     targetRevision: HEAD
-    path: common  # 👈 common 폴더를 바라보게 함
+    path: common
   destination:
     server: https://kubernetes.default.svc
-    namespace: webservice # common/namespace.yaml에 정의된 네임스페이스
+    namespace: webservice  # 요청하신 대로 webservice로 지정
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # 이미 있어도 안전하게 유지하는 설정
 
-
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -28,7 +30,7 @@ spec:
   source:
     repoURL: https://github.com/studylinker/manifest.git
     targetRevision: HEAD
-    path: apps/auth-service  # 👈 auth-service 폴더를 바라보게 함
+    path: apps/auth-service
   destination:
     server: https://kubernetes.default.svc
     namespace: webservice
@@ -36,8 +38,10 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
 
-
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -48,7 +52,7 @@ spec:
   source:
     repoURL: https://github.com/studylinker/manifest.git
     targetRevision: HEAD
-    path: apps/user-service  # 👈 user-service 폴더를 바라보게 함
+    path: apps/user-service
   destination:
     server: https://kubernetes.default.svc
     namespace: webservice
@@ -56,14 +60,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-```
-
----
-
-### 3. ArgoCD에 적용하는 방법 (딱 한 번만 실행)
-
-
-
-```bash
-# ArgoCD가 설치된 클러스터에서 실행
-kubectl apply -f manifest-repo/argocd/projects.yaml -n argocd
+    syncOptions:
+      - CreateNamespace=true
