@@ -1,0 +1,69 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: common-infra
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/studylinker/manifest.git  # 본인 레포 주소
+    targetRevision: HEAD
+    path: common  # 👈 common 폴더를 바라보게 함
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: msa-project # common/namespace.yaml에 정의된 네임스페이스
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: auth-service
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/studylinker/manifest.git
+    targetRevision: HEAD
+    path: apps/auth-service  # 👈 auth-service 폴더를 바라보게 함
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: webservice
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: user-service
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/studylinker/manifest.git
+    targetRevision: HEAD
+    path: apps/user-service  # 👈 user-service 폴더를 바라보게 함
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: webservice
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+```
+
+---
+
+### 3. ArgoCD에 적용하는 방법 (딱 한 번만 실행)
+
+이제 ArgoCD 웹 UI에서 앱을 하나하나 만들 필요가 없습니다. 아래 명령어로 위 파일을 클러스터에 던져주면 끝입니다.
+
+```bash
+# ArgoCD가 설치된 클러스터에서 실행
+kubectl apply -f manifest-repo/argocd/projects.yaml -n argocd
