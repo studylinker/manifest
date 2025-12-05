@@ -11,13 +11,13 @@ spec:
     path: common  # 👈 common 폴더를 바라보게 함
   destination:
     server: https://kubernetes.default.svc
-    namespace: msa-project # common/namespace.yaml에 정의된 네임스페이스
+    namespace: webservice # common/namespace.yaml에 정의된 네임스페이스
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
 
----
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -37,7 +37,7 @@ spec:
       prune: true
       selfHeal: true
 
----
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -62,7 +62,7 @@ spec:
 
 ### 3. ArgoCD에 적용하는 방법 (딱 한 번만 실행)
 
-이제 ArgoCD 웹 UI에서 앱을 하나하나 만들 필요가 없습니다. 아래 명령어로 위 파일을 클러스터에 던져주면 끝입니다.
+
 
 ```bash
 # ArgoCD가 설치된 클러스터에서 실행
