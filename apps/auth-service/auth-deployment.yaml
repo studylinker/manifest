@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+spec:
+  replicas: 1           # HPA가 적용되면 이 숫자는 무시됩니다 (처음에만 유효)
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+      - name: auth-container
+        image: my-auth-image:latest
+        
+        # 👇 [중요] 이 부분이 없으면 HPA 절대 안 됩니다!
+        resources:
+          requests:
+            cpu: "200m"     # 0.2 코어 (기준점)
+            memory: "128Mi"
+          limits:
+            cpu: "500m"     # 0.5 코어 (최대치)
+            memory: "256Mi"
