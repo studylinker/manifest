@@ -42,6 +42,14 @@ spec:
               service:
                 name: recommend-service    # service.yaml의 metadata.name
                 port:
+                  number: 10000 
+
+          - path: /api/user
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service    
+                port:
                   number: 10000  
 
           # 👇 [기존] 프론트엔드 웹 서비스 (80번 포트)
