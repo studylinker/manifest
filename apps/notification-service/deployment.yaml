@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: studylinker-front
+  name: notification-deployment
   namespace: webservice
   labels:
-    app: studylinker-web
+    app: notification-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: studylinker-web
+      app: notification-service
   template:
     metadata:
       labels:
-        app: studylinker-web
+        app: notification-service
     spec:
       containers:
-        - name: frontend
+        - name: notification-service
           image: nugulsuhan/p_frontend:1ec65b2773d82f25c66e71a748147f17cc448260
           ports:
-            - containerPort: 80
+            - containerPort: 10000
