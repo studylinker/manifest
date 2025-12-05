@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studylinker-front
+  namespace: webservice
+  labels:
+    app: studylinker-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: studylinker-web
+  template:
+    metadata:
+      labels:
+        app: studylinker-web
+    spec:
+      containers:
+        - name: frontend
+          image: nugulsuhan/p_frontend:1ec65b2773d82f25c66e71a748147f17cc448260
+          ports:
+            - containerPort: 80
