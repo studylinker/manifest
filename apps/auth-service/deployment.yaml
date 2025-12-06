@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: auth-deployment
 spec:
-  replicas: 1           # HPA가 적용되면 이 숫자는 무시됩니다 (처음에만 유효)
   selector:
     matchLabels:
       app: auth-service
