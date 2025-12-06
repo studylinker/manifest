@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: notification-container
-          image: nugulsuhan/notification-service:ded37e2436c87c0b7028d746f526fe19d6c90e21
+          image: nugulsuhan/notification-service:85597c1553455299ad1e19410d9cd605963ffaad
           ports:
             - containerPort: 10000
