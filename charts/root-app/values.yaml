@@ -23,7 +23,7 @@ microservices:
   - name: stats-service
     namespace: webservice
     image: nugulsuhan/stats-service
-    tag: v2.3
+    tag: 665768f5fc797d08ea5215a3f355b69f0bc6fc4c
     port: 10000
   - name: notification-service
     namespace: webservice
