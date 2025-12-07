@@ -2,6 +2,7 @@ apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
 metadata:
   name: notification-tgb
+  namespace : webservice
 spec:
   # 1. 연결할 K8s 서비스 정보
   serviceRef:
