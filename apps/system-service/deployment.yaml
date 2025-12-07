@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: system-container
-          image: nugulsuhan/system-service:24657c2e19c27d1b8344b790da1e34f7118d2f0f
+          image: nugulsuhan/system-service:1342d5d2823630332eda23b48b79cd03afda4e92
           ports:
             - containerPort: 10000
