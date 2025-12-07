@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/studylinker/manifest.git  # 본인 레포 주소
     targetRevision: HEAD
-    path: charts/common-app  # [중요] 7개 앱 모두 이 공용 경로를 바라봄
+    path: charts/common-apps  # [중요] 7개 앱 모두 이 공용 경로를 바라봄
     
     # [핵심] 공용 차트에 주입할 파라미터들
     helm:
