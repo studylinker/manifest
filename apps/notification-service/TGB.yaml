@@ -1,0 +1,17 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: notification-tgb
+spec:
+  # 1. 연결할 K8s 서비스 정보
+  serviceRef:
+    name: notification-service # 연결하려는 Service 이름 (정확해야 함)
+    port: 10000            # Service의 포트 (targetPort가 아님)
+
+  # 2. AWS 타겟 그룹의 ARN (AWS 콘솔에서 복사해오세요)
+  targetGroupARN: arn:aws:elasticloadbalancing:ap-northeast-2:390403881443:targetgroup/k8s-webservi-notifica-efe3a54a38/dafc0933799f6158
+
+  # 3. 연결 방식 (중요!)
+  # - instance: EC2 인스턴스 ID를 등록 (NodePort 방식, K3s 추천)
+  # - ip: 파드 IP를 직접 등록 (AWS VPC CNI를 쓸 때만 가능. K3s 기본 CNI면 instance 쓰세요)
+  targetType: instance
