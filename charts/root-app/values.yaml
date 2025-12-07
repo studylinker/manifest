@@ -1,52 +1,45 @@
 # 모든 서비스가 공유할 기본 설정
 destinationServer: https://kubernetes.default.svc
 project: default
-
 # 7개 서비스 리스트
 microservices:
   - name: auth-service
     namespace: webservice
     image: my-repo/auth
-    tag: v1.0
+    tag: cac8426d89a2baf14bf61b62b64b0f2b52a71e0e
     port: 10000
     resources:
       requests:
-        cpu: "200m"     # 0.2 코어 (기준점)
+        cpu: "200m" # 0.2 코어 (기준점)
         memory: "128Mi"
       limits:
-        cpu: "500m"     # 0.5 코어 (최대치)
+        cpu: "500m" # 0.5 코어 (최대치)
         memory: "256Mi"
-    
   - name: user-service
     namespace: webservice
     image: my-repo/auth
     tag: v1.0
     port: 10000
-    
   - name: stats-service
     namespace: webservice
     image: my-repo/payment
     tag: v2.3
     port: 10000
-
   - name: notification-service
     namespace: webservice
     image: my-repo/noti
     tag: latest
     port: 10000
-
   - name: system-service
     namespace: webservice
     image: my-repo/noti
     tag: latest
     port: 10000
-
   - name: recommend-service
     namespace: webservice
     image: my-repo/noti
     tag: latest
     port: 10000
-
   - name: study-service
     namespace: webservice
     image: my-repo/noti
