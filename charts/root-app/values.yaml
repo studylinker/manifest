@@ -5,7 +5,7 @@ project: default
 microservices:
   - name: auth-service
     namespace: webservice
-    image: my-repo/auth
+    image: nugulsuhan/auth-service
     tag: cac8426d89a2baf14bf61b62b64b0f2b52a71e0e
     port: 10000
     resources:
@@ -17,31 +17,31 @@ microservices:
         memory: "256Mi"
   - name: user-service
     namespace: webservice
-    image: my-repo/auth
+    image: nugulsuhan/user-service
     tag: v1.0
     port: 10000
   - name: stats-service
     namespace: webservice
-    image: my-repo/payment
+    image: nugulsuhan/stats-service
     tag: v2.3
     port: 10000
   - name: notification-service
     namespace: webservice
-    image: my-repo/noti
+    image: nugulsuhan/notification-service
     tag: latest
     port: 10000
   - name: system-service
     namespace: webservice
-    image: my-repo/noti
+    image: nugulsuhan/system-service
     tag: latest
     port: 10000
   - name: recommend-service
     namespace: webservice
-    image: my-repo/noti
+    image: nugulsuhan/recommend-service
     tag: latest
     port: 10000
   - name: study-service
     namespace: webservice
-    image: my-repo/noti
+    image: nugulsuhan/study-service
     tag: latest
     port: 10000
