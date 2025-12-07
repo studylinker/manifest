@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monitoring-grafana
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: studylinker      # studylinker-ingress와 동일
+    alb.ingress.kubernetes.io/group.order: "2"             # 두 번째
+    alb.ingress.kubernetes.io/target-type: instance              # studylinker와 맞추기
+    # 여기서는 scheme, cert, listen-ports, subnets 안 써도 됨 (그룹 리더에서 상속)
+
+    alb.ingress.kubernetes.io/healthcheck-path: /monitor/login
+    alb.ingress.kubernetes.io/success-codes: "200,302"
+spec:
+  ingressClassName: alb
+  rules:
+    - host: gachon.studylink.click
+      http:
+        paths:
+          - path: /monitor
+            pathType: Prefix
+            backend:
+              service:
+                name: prom-stack-grafana   # 실제 서비스 이름 그대로
+                port:
+                  number: 80              # prom-stack-grafana Service의 포트
