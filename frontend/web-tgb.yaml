@@ -6,7 +6,7 @@ metadata:
 spec:
   # 1. 연결할 K8s 서비스 정보
   serviceRef:
-    name: web-service # 연결하려는 Service 이름 (정확해야 함)
+    name: studylinker-web # 연결하려는 Service 이름 (정확해야 함)
     port: 80       # Service의 포트 (targetPort가 아님)
 
   # 2. AWS 타겟 그룹의 ARN (AWS 콘솔에서 복사해오세요)
