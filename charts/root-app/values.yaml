@@ -4,6 +4,12 @@ project: default
 
 # 7개 서비스 리스트
 microservices:
+  - name: auth-service
+    namespace: webservice
+    image: my-repo/auth
+    tag: v1.0
+    port: 10000
+    
   - name: user-service
     namespace: webservice
     image: my-repo/auth
