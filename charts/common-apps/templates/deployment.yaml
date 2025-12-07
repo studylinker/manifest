@@ -19,3 +19,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: {{ .Values.service.port | default 10000 }}
+          resources:
+            requests:
+              cpu: "200m"     # 0.2 코어 (기준점)
+              memory: "128Mi"
+            limits:
+              cpu: "500m"     # 0.5 코어 (최대치)
+              memory: "256Mi"
