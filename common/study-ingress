@@ -1,0 +1,63 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: studylinker-main
+  namespace: webservice
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: studylinker
+    alb.ingress.kubernetes.io/group.order: "5"
+
+    alb.ingress.kubernetes.io/healthcheck-path: "/actuator/health"
+    alb.ingress.kubernetes.io/success-codes: "200"
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "15"
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
+    alb.ingress.kubernetes.io/healthy-threshold-count: "2"
+
+    # === ALB 전체에 적용되는 옵션들 ===
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
+    alb.ingress.kubernetes.io/target-type: instance
+spec:
+  ingressClassName: alb
+  rules:
+    - host: gachon.studylink.click
+      http:
+        paths:
+          # 👇 [추가됨] Auth 서비스 (10000번 포트)
+          # 구체적인 경로를 먼저 적어주는 것이 관례상 좋습니다.
+          - path: /api/group-members
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000  
+                       
+          - path: /api/study-groups
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000 
+
+          - path: /api/study-posts
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000 
+
+          - path: /api/study-schedules
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000 
+
+         
+
+       
