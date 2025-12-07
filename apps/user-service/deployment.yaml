@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: user-container
-          image: nugulsuhan/user-service:53b3c8c8c46a09aa0cca1df5d23f32b7b7060c33
+          image: nugulsuhan/user-service:9ec228ecea705624149182aabf3088a1d86d2e2f
           ports:
             - containerPort: 10000
