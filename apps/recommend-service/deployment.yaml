@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: recommend-container
-          image: nugulsuhan/recommend-service:7a5d44e8e104800838641ffb33031c5b9c17b610
+          image: nugulsuhan/recommend-service:c6b351c1707b3fa59a5df8c330f57dba17c61b15
           ports:
             - containerPort: 10000
