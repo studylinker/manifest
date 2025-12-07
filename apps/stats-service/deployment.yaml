@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: stats-container
-          image: nugulsuhan/stats-service:6bd3e1456de2ceaa1658d96ad346deea1e70a163
+          image: nugulsuhan/stats-service:d3529aa5b66807a0367b12c185840a70b5b52ed8
           ports:
             - containerPort: 10000
