@@ -9,6 +9,13 @@ microservices:
     image: my-repo/auth
     tag: v1.0
     port: 10000
+    resources:
+      requests:
+        cpu: "200m"     # 0.2 코어 (기준점)
+        memory: "128Mi"
+      limits:
+        cpu: "500m"     # 0.5 코어 (최대치)
+        memory: "256Mi"
     
   - name: user-service
     namespace: webservice
