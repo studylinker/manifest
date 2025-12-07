@@ -33,7 +33,7 @@ microservices:
   - name: system-service
     namespace: webservice
     image: nugulsuhan/system-service
-    tag: latest
+    tag: de02c7d72742eb87d0876368c80932639a061f1e
     port: 10000
   - name: recommend-service
     namespace: webservice
