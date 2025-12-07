@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: auth-container
-        image: nugulsuhan/auth-service:56fd87adb16b55e857f4b2ef0dc88d38fb91d11d
+        image: nugulsuhan/auth-service:40dfcee723bacec07b591cc352c626927bbb6fe3
         
         # 👇 [중요] 이 부분이 없으면 HPA 절대 안 됩니다!
         resources:
