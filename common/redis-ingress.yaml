@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redisinsight-ingress
+  namespace: redis
+  annotations:
+    kubernetes.io/ingress.class: alb
+    # 기존 ALB 그룹(studylinker)에 합류
+    alb.ingress.kubernetes.io/group.name: studylinker
+    alb.ingress.kubernetes.io/group.order: "3"
+    alb.ingress.kubernetes.io/target-type: instance
+    # 헬스 체크 설정
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/success-codes: "200-399"
+spec:
+  ingressClassName: alb
+  rules:
+  # Route53에 등록한 서브 도메인
+  - host: redis.gachon.studylink.click
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: redisinsight-svc
+            port:
+              number: 80
