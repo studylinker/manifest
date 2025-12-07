@@ -18,4 +18,4 @@ spec:
         - name: app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: {{ .Values.service.port | default 8080 }}
+            - containerPort: {{ .Values.service.port | default 10000 }}
