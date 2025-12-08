@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: nugulsuhan/p_frontend:819803b3cf6df2d16e1af5856d5cd0252e29f1a3
+          image: nugulsuhan/p_frontend:111e59f271974e1b1b20b398546085bb486ad9b1
           ports:
             - containerPort: 80
