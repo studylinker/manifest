@@ -61,6 +61,22 @@ spec:
                 name: user-service    
                 port:
                   number: 10000
+
+          - path: /api/admin/users
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service    
+                port:
+                  number: 10000
+                  
+          - path: /api/admin/notifications
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service    
+                port:
+                  number: 10000
                   
           - path: /api/manners
             pathType: Prefix
