@@ -56,7 +56,15 @@ spec:
               service:
                 name: study-service    
                 port:
-                  number: 10000 
+                  number: 10000
+                  
+          - path: /api/attendance
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000
 
          
 
