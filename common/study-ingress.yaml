@@ -70,6 +70,14 @@ spec:
                 port:
                   number: 10000
 
+          - path: /api/admin/posts
+            pathType: Prefix
+            backend:
+              service:
+                name: study-service    
+                port:
+                  number: 10000
+
          
 
        
