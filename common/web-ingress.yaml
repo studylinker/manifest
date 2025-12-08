@@ -56,7 +56,15 @@ spec:
               service:
                 name: user-service    
                 port:
-                  number: 10000 
+                  number: 10000
+                  
+          - path: /api/manners
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service    
+                port:
+                  number: 10000        
 
           - path: /api/recommend
             pathType: Prefix
