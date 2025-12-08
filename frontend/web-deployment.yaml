@@ -20,17 +20,17 @@ spec:
           image: nugulsuhan/p_frontend:6f93b0a3d6aeeab90f6913cb22db1a245e6c601d
           ports:
             - containerPort: 80
-   
-      volumeMounts:
-            # 🌟 1. ConfigMap을 Nginx 설정 파일 위치에 마운트
+          # 🌟 [수정 없음] volumeMounts는 container 스펙 내부에 정의되어야 합니다.
+          volumeMounts:
             - name: nginx-config-volume
               mountPath: /etc/nginx/conf.d/
               readOnly: true
-    volumes:
-        # 🌟 2. 사용할 ConfigMap 볼륨 정의
-        - name: nginx-config-volume
+
+      # 🌟🌟🌟 [수정됨] volumes는 spec 레벨에 정의되어야 합니다. (containers와 같은 레벨)
+      volumes:
+        - name: nginx-config-volume # volumeMounts의 name과 일치해야 함
           configMap:
-            name: studylinker-front-nginx-config # 1단계에서 생성한 ConfigMap 이름
+            name: studylinker-front-nginx-config
             items:
-              - key: default.conf # ConfigMap의 data 섹션의 키
-                path: default.conf # 컨테이너 내부의 파일 이름
+              - key: default.conf
+                path: default.conf
