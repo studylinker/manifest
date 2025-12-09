@@ -18,7 +18,7 @@ microservices:
   - name: user-service
     namespace: webservice
     image: nugulsuhan/user-service
-    tag: e0247f5e45be6db36ed82acb75e57a7700893684
+    tag: 5068cd562a09500fb3b6377d55092173b1c26f76
     port: 10000
   - name: stats-service
     namespace: webservice
