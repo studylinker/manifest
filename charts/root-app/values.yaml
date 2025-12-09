@@ -28,7 +28,7 @@ microservices:
   - name: notification-service
     namespace: webservice
     image: nugulsuhan/notification-service
-    tag: 5068cd562a09500fb3b6377d55092173b1c26f76
+    tag: 734ffed973033994dc658d1d1a024244b2e61489
     port: 10000
   - name: system-service
     namespace: webservice
