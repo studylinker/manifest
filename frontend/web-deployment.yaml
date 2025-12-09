@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: nugulsuhan/p_frontend:7b21548835e7bf20db7c6aa690ff7df91bf846b5
+          image: nugulsuhan/p_frontend:9fd0e45af3a42e7f193b173ac14782af5790cc4e
           ports:
             - containerPort: 80
           # 🌟 [수정 없음] volumeMounts는 container 스펙 내부에 정의되어야 합니다.
