@@ -38,7 +38,7 @@ microservices:
   - name: recommend-service
     namespace: webservice
     image: nugulsuhan/recommend-service
-    tag: 5068cd562a09500fb3b6377d55092173b1c26f76
+    tag: 202df138b225d77841c456c417e594e320443cd4
     port: 10000
   - name: study-service
     namespace: webservice
