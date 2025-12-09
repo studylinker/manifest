@@ -43,5 +43,5 @@ microservices:
   - name: study-service
     namespace: webservice
     image: nugulsuhan/study-service
-    tag: 1dc49e9e8eb9615be5a4510193ed5a27f99b95bf
+    tag: 202df138b225d77841c456c417e594e320443cd4
     port: 10000
