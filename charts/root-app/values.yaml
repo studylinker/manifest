@@ -26,7 +26,7 @@ microservices:
   - name: system-service
     namespace: webservice
     image: nugulsuhan/system-service
-    tag: 1313bbfa91a3ff9077f3964407efa7d8f4a9b6d4
+    tag: 73e93b34e50df7332c9b4d95695a73b95e49684a
     port: 10000
   - name: recommend-service
     namespace: webservice
