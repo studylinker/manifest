@@ -8,38 +8,37 @@ microservices:
     image: nugulsuhan/auth-service
     tag: 202df138b225d77841c456c417e594e320443cd4
     port: 10000
-    resources:
-      requests:
-        cpu: "200m" # 0.2 코어 (기준점)
-        memory: "128Mi"
-      limits:
-        cpu: "500m" # 0.5 코어 (최대치)
-        memory: "256Mi"
+
   - name: user-service
     namespace: webservice
     image: nugulsuhan/user-service
     tag: 7e0da73772df007539d090e55454cd86c369671b
     port: 10000
+    
   - name: stats-service
     namespace: webservice
     image: nugulsuhan/stats-service
     tag: faa10805788379262b7e1b2b120eff1983d87474
     port: 10000
+    
   - name: notification-service
     namespace: webservice
     image: nugulsuhan/notification-service
     tag: 5724dcfc925c1dce7016ad52311f7b9c4e70be91
     port: 10000
+    
   - name: system-service
     namespace: webservice
     image: nugulsuhan/system-service
     tag: 202df138b225d77841c456c417e594e320443cd4
     port: 10000
+    
   - name: recommend-service
     namespace: webservice
     image: nugulsuhan/recommend-service
     tag: 202df138b225d77841c456c417e594e320443cd4
     port: 10000
+    
   - name: study-service
     namespace: webservice
     image: nugulsuhan/study-service
