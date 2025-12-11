@@ -5,25 +5,36 @@ metadata:
   namespace: redis
   annotations:
     kubernetes.io/ingress.class: alb
-    # 기존 ALB 그룹(studylinker)에 합류
     alb.ingress.kubernetes.io/group.name: studylinker
     alb.ingress.kubernetes.io/group.order: "3"
     alb.ingress.kubernetes.io/target-type: instance
-    # 헬스 체크 설정
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    # 인증서 ARN (정확한지 꼭 확인하세요)
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:390403881443:certificate/3ba9c39c-42d3-48b3-a395-7d5c628ee5ab
     
-    # 🌟 3. HTTP 80 포트 리스너에 대한 리다이렉션 액션 정의 (80 포트로 오면 443으로 리다이렉트)
+    # 🌟 리다이렉션 액션 정의 (이름: redirect-to-https)
     alb.ingress.kubernetes.io/actions.redirect-to-https: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    
+    # 헬스체크 경로 (RedisInsight의 경우 / 가 보통 맞지만, 안되면 /healthz 등 확인 필요)
     alb.ingress.kubernetes.io/healthcheck-path: /
     alb.ingress.kubernetes.io/success-codes: "200-399"
+
 spec:
   ingressClassName: alb
   rules:
-  # Route53에 등록한 서브 도메인
   - host: redis.gachon.studylink.click
     http:
       paths:
+      # [1] 첫 번째 규칙: HTTP(80)로 들어오면 HTTPS(443)로 튕겨낸다.
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: redirect-to-https  # 위 annotation에서 정의한 액션 이름 사용
+            port:
+              name: use-annotation   # 포트 번호 대신 이걸 적어줘야 함
+
+      # [2] 두 번째 규칙: HTTPS로 들어오면 진짜 서비스로 보낸다.
       - path: /
         pathType: Prefix
         backend:
