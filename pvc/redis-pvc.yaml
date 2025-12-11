@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+  namespace: redis       # 주의: Redis가 설치될 네임스페이스와 같아야 함
+  annotations:
+    # ArgoCD가 앱을 삭제해도 PVC는 남겨두도록 설정 (데이터 보호)
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 1Gi
