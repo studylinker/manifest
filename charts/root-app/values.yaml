@@ -6,7 +6,7 @@ microservices:
   - name: auth-service
     namespace: webservice
     image: nugulsuhan/auth-service
-    tag: 9c2a4ac33277c0ce50f587fec2db197270d0ff70
+    tag: d5d682455850b7fad4c1de631e75e2c2547f66a6
     port: 10000
   - name: user-service
     namespace: webservice
